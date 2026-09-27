@@ -75,7 +75,7 @@
         <div class="hero-visual reveal">
           <div class="image-glow"></div>
           <img
-            src="assets/doctor-team.png"
+            src="assets/hero-medical-team.webp"
             alt="Illustrative team of doctors; this image does not represent Dr. Kinza Bilal"
           />
           <div class="hero-note">
@@ -179,21 +179,22 @@
 
         <div class="location-grid">
           <article class="location-card reveal">
-            <div class="location-icon">H</div>
+            <img class="location-photo" src="assets/dhq-hospital.webp" alt="DHQ Hospital Jhelum building" loading="lazy" />
             <h3>DHQ Hospital</h3>
+            <p class="clinic-days">Monday to Saturday</p>
             <p><strong>8:00 AM – 2:00 PM</strong></p>
             <p>Daytime hospital consultation.</p>
           </article>
 
           <article class="location-card reveal">
-            <div class="location-icon">S</div>
+            <img class="location-photo" src="assets/sarmad-hospital.webp" alt="Sarmad Hospital entrance" loading="lazy" />
             <h3>Sarmad Hospital</h3>
             <p><strong>Tuesday & Thursday</strong></p>
             <p>2:00 PM – 4:00 PM</p>
           </article>
 
           <article class="location-card reveal">
-            <div class="location-icon">A</div>
+            <img class="location-photo" src="assets/allama-iqbal-hospital.webp" alt="Allama Iqbal Hospital building" loading="lazy" />
             <h3>Allama Iqbal Hospital, Kharian</h3>
             <p><strong>Evening Clinic</strong></p>
             <p>Available on the remaining working days.</p>
@@ -215,7 +216,7 @@
         </div>
 
         <div class="kidney-image reveal">
-          <img src="assets/kidney-illustration.png" alt="Educational illustration of human kidneys" />
+          <img src="assets/kidney-banner.webp" alt="Educational illustration of human kidneys" loading="lazy" />
         </div>
 
         <div class="fact-card reveal">
@@ -344,10 +345,10 @@
         <div class="reveal">
           <span class="eyebrow light">Appointments</span>
           <h2>Take Charge of Your Kidney Health</h2>
-          <p>Use the form to prepare an appointment request. Contact details can be connected to WhatsApp, phone or a booking system before launch.</p>
+          <p>Send an appointment request. The clinic will contact you to confirm availability. Please do not include sensitive medical details.</p>
 
           <div class="schedule-summary">
-            <p><strong>DHQ Hospital:</strong> 8:00 AM – 2:00 PM</p>
+            <p><strong>DHQ Hospital:</strong> Monday to Saturday, 8:00 AM – 2:00 PM</p>
             <p><strong>Sarmad Hospital:</strong> Tuesday & Thursday, 2:00 PM – 4:00 PM</p>
             <p><strong>Allama Iqbal Hospital, Kharian:</strong> Evenings on remaining working days</p>
           </div>
@@ -384,7 +385,7 @@
 
           <label>
             Message
-            <textarea name="message" rows="4" placeholder="Briefly share the reason for appointment"></textarea>
+            <textarea name="message" rows="4" maxlength="500" placeholder="Optional short note (no sensitive medical details)"></textarea>
           </label>
 
           <button type="submit" class="btn btn-primary full-btn">Request Appointment</button>
@@ -423,7 +424,7 @@
 
       <div>
         <h3>Clinic Timings</h3>
-        <p>DHQ Hospital — 8:00 AM to 2:00 PM</p>
+        <p>DHQ Hospital — Monday to Saturday, 8:00 AM to 2:00 PM</p>
         <p>Sarmad Hospital — Tue & Thu, 2:00 PM to 4:00 PM</p>
         <p>Allama Iqbal Hospital, Kharian — Evenings on remaining working days</p>
       </div>
@@ -435,6 +436,9 @@
     </div>
   </footer>
 
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="cms-fields.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

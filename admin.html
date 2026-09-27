@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Admin | Dr. Kinza Bilal</title>
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <header><strong>Dr. Kinza Bilal · Admin</strong><a href="./">View website</a><button id="logout" hidden>Sign out</button></header>
+  <main>
+    <section id="loginPanel" class="card narrow">
+      <h1>Admin sign in</h1>
+      <p>Only authorized clinic staff can view appointments and edit website content.</p>
+      <form id="loginForm">
+        <label>Email<input type="email" name="email" required autocomplete="username" /></label>
+        <label>Password<input type="password" name="password" required autocomplete="current-password" /></label>
+        <button type="submit">Sign in</button>
+      </form>
+      <p id="loginStatus" role="status"></p>
+    </section>
+    <section id="resetPanel" class="card narrow" hidden>
+      <h1>Set a new password</h1>
+      <form id="resetForm">
+        <label>New password<input type="password" name="password" required minlength="12" autocomplete="new-password" /></label>
+        <button type="submit">Save password</button>
+      </form>
+      <p id="resetStatus" role="status"></p>
+    </section>
+    <section id="adminPanel" hidden>
+      <h1>Clinic dashboard</h1>
+      <p id="adminStatus" role="status"></p>
+      <section class="card">
+        <div class="section-heading"><h2>Appointment requests</h2><button id="refresh" type="button">Refresh</button></div>
+        <p>Requests require confirmation from the clinic. No slot is booked automatically.</p>
+        <div class="table-wrap"><table><thead><tr><th>Received</th><th>Name</th><th>Phone</th><th>Clinic</th><th>Preferred date</th><th>Note</th><th>Status</th></tr></thead><tbody id="appointments"></tbody></table></div>
+      </section>
+      <section class="card">
+        <h2>Edit website content</h2>
+        <p>Save each field to update the live site. Enter a full HTTPS image URL for the hero image. Publish only clinic approved timings and medical copy.</p>
+        <div id="contentFields" class="fields"></div>
+      </section>
+    </section>
+  </main>
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="cms-fields.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -797,5 +797,140 @@ h3 {
   .footer-grid { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; }
 
-  .brand small { font-size: .65rem; }
+.brand small { font-size: .65rem; }
+}
+
+/* Focused banner and clinic photo refresh */
+.hero {
+  background: #e9f4fa;
+}
+.hero-grid {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 600px;
+  padding-block: 76px;
+}
+.hero-copy {
+  position: relative;
+  z-index: 3;
+  width: min(51%, 580px);
+}
+.hero-copy h1 {
+  font-size: clamp(2.8rem, 4.3vw, 4.6rem);
+  line-height: 1.04;
+}
+.hero-visual {
+  position: absolute;
+  inset: 0 calc((100% - 100vw) / 2);
+  min-height: 0;
+  z-index: 0;
+}
+.hero-visual img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0;
+  filter: none;
+}
+.hero-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(90deg, rgba(237,247,252,.94) 0%, rgba(237,247,252,.78) 32%, transparent 62%);
+  pointer-events: none;
+}
+.hero .image-glow { display: none; }
+.hero-note {
+  right: 22px;
+  bottom: 22px;
+  width: 218px;
+}
+.hero .trust-row { gap: 10px; }
+.hero .trust-row div { padding-top: 10px; }
+
+.location-card {
+  overflow: hidden;
+  padding: 0 0 26px;
+}
+.location-photo {
+  display: block;
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  object-position: center 45%;
+  margin-bottom: 24px;
+}
+.location-card:first-child .location-photo { object-position: center 42%; }
+.location-card > h3,
+.location-card > p { margin-left: 26px; margin-right: 26px; }
+.location-card .clinic-days {
+  color: var(--blue-dark);
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.kidney-section {
+  position: relative;
+  overflow: hidden;
+  background: #062a44;
+  padding: 74px 0;
+}
+.kidney-grid {
+  position: relative;
+  grid-template-columns: 1fr .85fr .8fr;
+  gap: 24px;
+  min-height: 290px;
+}
+.kidney-image {
+  position: absolute;
+  inset: -74px calc((100% - 100vw) / 2);
+  z-index: 0;
+  pointer-events: none;
+}
+.kidney-image img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  border-radius: 0;
+  object-fit: cover;
+  mix-blend-mode: normal;
+  filter: none;
+}
+.kidney-copy { grid-column: 1; position: relative; z-index: 1; }
+.kidney-section .fact-card {
+  grid-column: 3;
+  position: relative;
+  z-index: 1;
+  background: rgba(7, 52, 75, .83);
+}
+.kidney-section .fact-card li { margin-bottom: 5px; }
+
+@media (max-width: 980px) {
+  .hero-grid { min-height: 550px; }
+  .hero-copy { width: 58%; }
+  .hero-copy h1 { font-size: clamp(2.5rem, 5vw, 3.9rem); }
+  .kidney-grid { display: grid; grid-template-columns: 1fr 1fr; }
+  .kidney-section .fact-card { grid-column: 2; }
+  .kidney-image { order: initial; }
+}
+@media (max-width: 640px) {
+  .hero-grid { display: flex; flex-direction: column; min-height: 0; padding: 48px 0 0; gap: 0; }
+  .hero-copy { width: 100%; padding-bottom: 30px; }
+  .hero-copy h1 { font-size: clamp(2.5rem, 11vw, 3.8rem); }
+  .hero-visual { position: relative; inset: auto; width: calc(100% + 28px); margin: 0 -14px; min-height: 350px; }
+  .hero-visual::after { background: linear-gradient(180deg, #e9f4fa, transparent 28%); }
+  .hero-visual img { object-position: 64% center; }
+  .hero-note { right: 14px; left: auto; bottom: 14px; width: 205px; }
+  .location-photo { height: 215px; }
+  .kidney-section { padding: 55px 0; }
+  .kidney-grid { display: flex; flex-direction: column; gap: 32px; }
+  .kidney-copy, .kidney-section .fact-card { width: 100%; }
+  .kidney-image { position: relative; inset: auto; width: calc(100% + 28px); height: 240px; margin: 0 -14px; }
+  .kidney-image img { object-position: center; }
 }

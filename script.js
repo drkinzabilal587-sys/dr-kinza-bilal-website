@@ -41,9 +41,50 @@ document.getElementById("year").textContent = new Date().getFullYear();
 
 const form = document.getElementById("appointmentForm");
 const formStatus = document.getElementById("formStatus");
+const client = window.kinzaClient?.();
 
-form?.addEventListener("submit", event => {
+if (client) {
+  client.from("site_content").select("key,value").then(({ data, error }) => {
+    if (error) return console.error("Website content could not load:", error.message);
+    window.kinzaApplyContent(data || []);
+    ["dhq_name", "sarmad_name", "iqbal_name"].forEach((key, index) => {
+      const name = data?.find(item => item.key === key)?.value;
+      const option = form?.querySelectorAll('select[name="location"] option')[index + 1];
+      if (name && option) option.textContent = option.value = name;
+    });
+  });
+}
+
+form?.addEventListener("submit", async event => {
   event.preventDefault();
-  formStatus.textContent =
-    "Appointment form is ready. Connect it to Dr. Kinza Bilal's phone, WhatsApp, email or booking system before publishing.";
+  if (!client) {
+    formStatus.textContent = "Online booking is being set up. Please try again later.";
+    return;
+  }
+  const button = form.querySelector('button[type="submit"]');
+  const values = new FormData(form);
+  const name = String(values.get("name") || "").trim();
+  const phone = String(values.get("phone") || "").trim();
+  const location = String(values.get("location") || "").trim();
+  if (name.length < 2 || name.length > 100 || !/^[+0-9()\s-]{8,25}$/.test(phone) || !location) {
+    formStatus.textContent = "Please enter a valid name, phone number and clinic.";
+    return;
+  }
+  button.disabled = true;
+  formStatus.textContent = "Sending your request…";
+  const { error } = await client.from("appointments").insert({
+    patient_name: name,
+    phone,
+    location,
+    preferred_date: values.get("date") || null,
+    message: String(values.get("message") || "").trim().slice(0, 500)
+  });
+  button.disabled = false;
+  if (error) {
+    console.error("Appointment request failed:", error.message);
+    formStatus.textContent = "Request could not be sent. Please try again later.";
+    return;
+  }
+  form.reset();
+  formStatus.textContent = "Request received. The clinic will contact you to confirm availability.";
 });
